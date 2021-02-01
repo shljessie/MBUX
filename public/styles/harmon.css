@@ -1,0 +1,66 @@
+html{
+  height:100%;
+  -webkit-background-size: auto;
+  -moz-background-size: auto;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: black;
+  background-position: center; 
+  transition: 1s;
+}
+#center{
+}
+#text{
+  display: block;
+  color: white;
+  text-align: center;
+  line-height: 30px;
+  z-index: 300;
+  position: absolute;
+  font-family: 'Roboto';
+  max-width: 380px;
+  font-size: 20px;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -300%);
+}
+#video{
+  width: 99%;
+  position: absolute;
+  top: 25.3%;
+  z-index: 100;
+}
+#harmonMenuResponse{
+  background-image: url("../images/menus/harmonMenu.png");
+}
+
+#harmonStart{
+  background-image: url("../images/harmonization/harmonStart.png");
+}
+#startArrow{
+  position: absolute;
+  left:7%;
+  top: 65%;
+}
+#backButton{
+  position: absolute;
+  left:10%;
+  top: 15%;
+  width: 2.5vw;
+}
+#backButton:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+}
+#backButton:focus{
+  outline: none;
+}
+
+@media only screen and (max-width: 1460px) {
+  #backButton{
+    top: 17%;
+  }
+  #backButton:hover{
+    transform: scale(1.07);
+  }
+}

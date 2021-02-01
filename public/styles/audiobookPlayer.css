@@ -1,0 +1,26 @@
+#audioBookPlayer{
+  background-image: url("../images/audiobook/audioBookMain.png");
+}
+
+#backButton{
+  position: absolute;
+  left:10%;
+  top: 15%;
+  width: 2.5vw;
+}
+#backButton:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+}
+#backButton:focus{
+  outline: none;
+}
+
+@media only screen and (max-width: 1460px) {
+  #backButton{
+    top: 17%;
+  }
+  #backButton:hover{
+    transform: scale(1.07);
+  }
+}

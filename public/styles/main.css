@@ -1,0 +1,62 @@
+html{
+  height:100%;
+  background-image: url("../images/Onboarding.png");
+  -webkit-background-size: auto;
+  -moz-background-size: auto;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: black;
+  background-position: center; 
+  transition: 1s;
+}
+.buttonCont{
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  height: 55%;
+  justify-content: space-between;
+  position: absolute;
+  right:10%;
+  bottom: 15%;
+}
+#two{
+  margin-left: 3px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+input{
+  margin: auto;
+}
+
+input:hover{
+  box-shadow:  0 0 20px  #0095FF;
+  -moz-box-shadow:  0 0 20px  #0095FF;
+  -webkit-box-shadow:  0 0 20px  #0095FF;  
+  cursor: pointer;
+}
+input:focus{
+  outline: none;
+}
+
+@media only screen and (max-width: 1460px) {
+  .buttonCont{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: 48%;
+    justify-content: space-between;
+    position: absolute;
+    right:10%;
+    bottom: 20%;
+  }
+  #two{
+    margin-left: 7px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+  }
+  
+  input{
+    width: 95%;
+  }
+}

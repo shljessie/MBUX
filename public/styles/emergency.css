@@ -1,0 +1,32 @@
+html{
+  height:100%;
+  text-align: center;
+  -webkit-background-size: auto;
+  -moz-background-size: auto;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: black;
+  background-position: center; 
+}
+#emergencyBackground{
+  background-image: url("../../public/images/emergency/Emergency_1\ \(1\).png");
+}
+#RbackButton{
+  position: absolute;
+  left:10.5%;
+  top: 16%;
+  width: 2.5vw;
+}
+#RbackButton:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+}
+#RbackButton:focus{
+  outline: none;
+}
+
+@media only screen and (max-width: 1500px) {
+  #RbackButton{
+    top: 18%;
+  }
+}

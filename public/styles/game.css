@@ -1,0 +1,286 @@
+#gameResponse{
+  height:100%;
+  background-image: url("../images/menus/gameMenu.png");
+  -webkit-background-size: auto;
+  -moz-background-size: auto;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: black;
+  background-position: center; 
+  transition: 1s;
+}
+#gameMain{
+  height:100%;
+  background-image: url("../images/game/gameMain.png");
+  -webkit-background-size: auto;
+  -moz-background-size: auto;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: black;
+  background-position: center; 
+  transition: 1s;
+}
+#backButton{
+  position: absolute;
+  left:10%;
+  top: 15%;
+  width: 2.5vw;
+}
+#backButton:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+}
+#backButton:focus{
+  outline: none;
+}
+#animalName{
+  position: absolute; 
+  font-family: 'Roboto'; 
+  font-size: 24px;
+  color: #eee;
+  top: 30%; 
+  left: 42%;
+}
+
+/* same position just change display */
+#recordCont{
+  display: none;
+  margin: auto;
+  margin-top: 25%;
+  width:15%;
+}
+.circle-ripple {
+  background-color: transparent;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  -webkit-animation: ripple 1s linear infinite;
+  animation: ripple 1s linear infinite;
+}
+#recordInit{
+  display: block;
+  margin: auto;
+  margin-top: 25%;
+  width:15%;
+}
+#record{
+  width:100%;
+}
+#circle-load{
+  transform:rotate(-90deg);
+  display: none;
+  margin: auto;
+  margin-top: 25%;
+  width:20%;
+}
+.circle-load-svg {
+  stroke-dasharray: 950;
+  stroke-dashoffset: 950;
+  animation: rot 2s linear;
+  animation-fill-mode: forwards;
+}
+
+#error-circle-load{
+  transform:rotate(-90deg);
+  display: none;
+  margin: auto;
+  margin-top: 25%;
+  width:20%;
+}
+
+ @keyframes rot {
+    100% {
+        stroke-dashoffset: 0;
+    }
+  }
+
+  /* animal images */
+#wrongImg{
+  display:none;
+  width:80%;
+  transform:rotate(90deg);
+  position: absolute;
+  top: 18.5%;
+  left: 35%;
+}
+#cow{
+  display:none;
+  width:80%;
+  transform:rotate(90deg);
+  position: absolute;
+  top: 18%;
+  left: 20%;
+}
+#cat{
+  display:none;
+  width:80%;
+  transform:rotate(90deg);
+  position: absolute;
+  top: 20%;
+  left: 29%;
+}
+#dog{
+  display:none;
+  width:60%;
+  transform:rotate(90deg);
+  position: absolute;
+  top: 20%;
+  left: 38%;
+}
+#pig{
+  display:none;
+  width:50%;
+  transform:rotate(90deg);
+  position: absolute;
+  top: 20.5%;
+  left: 40%;
+}
+#sheep{
+  display:none;
+  width:40%;
+  transform:rotate(90deg);
+  position: absolute;
+  top: 23.5%;
+  left: 43%;
+}
+
+@media only screen and (max-width: 1460px) {
+  #backButton{
+    top: 17%;
+  }
+  #backButton:hover{
+    transform: scale(1.07);
+  }
+  #animalName{
+    position: absolute; 
+    font-family: 'Roboto'; 
+    font-size: 20px;
+    color: #eee;
+    top: 30%; 
+    left: 40%;
+  }
+.circle-ripple {
+  background-color: transparent;
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  -webkit-animation: ripple 1s linear infinite;
+  animation: ripple 1s linear infinite;
+}
+/* animal images */
+#wrongImg{
+  display:none;
+  width:100%;
+  transform:rotate(90deg);
+  position: absolute;
+  top: 18.5%;
+  left: 45%;
+}
+#cow{
+  display:none;
+  width:100%;
+  transform:rotate(90deg);
+  position: absolute;
+  top: 20%;
+  left: 25%;
+}
+#cat{
+  display:none;
+  width:100%;
+  transform:rotate(90deg);
+  position: absolute;
+  top: 20%;
+  left: 29%;
+}
+#dog{
+  display:none;
+  transform:rotate(90deg);
+  position: absolute;
+  top: 20%;
+  left: 43%;
+  width:80%;
+}
+#pig{
+  display:none;
+  transform:rotate(90deg);
+  position: absolute;
+  top: 22%;
+  left: 50%;
+  width:60%;
+}
+#sheep{
+  display:none;
+  width:55%;
+  transform:rotate(90deg);
+  position: absolute;
+  top: 22.5%;
+  left: 54%;
+}
+}
+
+@-webkit-keyframes wait {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.3;
+  }
+  }
+  
+  @keyframes wait {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.3;
+  }
+  }
+  @-webkit-keyframes ripple {
+  0% {
+    box-shadow: 0 0 0 0 rgba(134, 61, 87, 0.1), 0 0 0 2em rgba(134, 61, 87, 0.1), 0 0 0 2em rgba(135, 104, 255, 0.1);
+  }
+  100% {
+    box-shadow: 0 0 0 2em rgba(134, 61, 87, 0.1), 0 0 0 2em rgba(135, 104, 255, 0.1), 0 0 0 4em rgba(135, 104, 255, 0);
+  }
+  }
+  @keyframes ripple {
+  0% {
+    box-shadow: 0 0 0 0 rgba(134, 61, 87, 0.1), 0 0 0 2em rgba(134, 61, 87, 0.1), 0 0 0 2em rgba(135, 104, 255, 0.1);
+  }
+  100% {
+    box-shadow: 0 0 0 2em rgba(134, 61, 87, 0.1), 0 0 0 2em rgba(135, 104, 255, 0.1), 0 0 0 4em rgba(135, 104, 255, 0);
+  }
+  }
+  
+  :root {
+    --box-width:100%;
+    --box-width-mg:calc((var(--box-width) / 2) * -1);
+    --box-width-big:calc(var(--box-width) + 15%);
+    --box-width-big-mg:calc(((var(--box-width) + 15%) / 2) * -1);
+    --box-width-small:calc(var(--box-width) - 13%);
+    --box-width-small-mg:calc(((var(--box-width) - 13%) / 2) * -1);
+  }
+
+  #AnotherSound {
+    color: white;
+    display:flex;
+    flex-direction: column;
+  }

@@ -1,0 +1,44 @@
+#whistleMenuResponse{
+  height:100%;
+  background-image: url("../images/menus/whistleMenu.png");
+  -webkit-background-size: auto;
+  -moz-background-size: auto;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: black;
+  background-position: center; 
+  transition: 1s;
+}
+#whistleExplainResponse{
+  height:100%;
+  background-image: url("../images/whistle/whistleExplain.png");
+  -webkit-background-size: auto;
+  -moz-background-size: auto;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: black;
+  background-position: center; 
+  transition: 1s;
+}
+#backButton{
+  position: absolute;
+  left:10%;
+  top: 15%;
+  width: 2.5vw;
+}
+#backButton:hover{
+  cursor: pointer;
+  transform: scale(1.2);
+}
+#backButton:focus{
+  outline: none;
+}
+
+@media only screen and (max-width: 1460px) {
+  #backButton{
+    top: 17%;
+  }
+  #backButton:hover{
+    transform: scale(1.07);
+  }
+}
