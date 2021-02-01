@@ -1,0 +1,216 @@
+<html id="gameMain">
+<head>
+    <link href='../../public/styles/game.css' rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
+</head>
+
+<body>
+  <script src="/pages/js/ajax.js"></script>
+
+    <input type="image" id="backButton" onclick='AjaxCall("disable", "/")' src="../../public/images/backButton.png"/>
+
+    <div id="animalName" style="z-index: 9999999999;"></div>
+    <!-- <img id="recordInit"  src="../public/images/game/gameRecord.png" /> -->
+
+    <div id="recordCont" >
+        <div class="circle-ripple">
+          <div class="circle_image">
+            <img id="record"  src="../public/images/game/gameRecord.png" />
+        </div>
+        </div>
+    </div>
+
+    <hgroup id="circle-load">
+          <svg width="450px" height="450px" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#DF84FF" />
+                <stop offset="100%" stop-color="#00FFFF" />
+              </linearGradient>
+            </defs>
+              <circle cx="230" cy="230" r="120" stroke-width="30" stroke="none" fill="none"></circle>
+              <circle cx="230" cy="230" r="120" stroke-width="30" stroke="url(#gradient)" fill="none" class="circle-load-svg"></circle>
+          </svg>
+          <img id="cow" src="../public/images/game/cow.png" />
+          <img id="cat" src="../public/images/game/cat.png" />
+          <img id="dog" src="../public/images/game/dog.png" />
+          <img id="pig" src="../public/images/game/pig.png" />
+          <img id="sheep" src="../public/images/game/sheep.png" />
+    </hgroup>
+
+    <hgroup id="error-circle-load">
+      <svg width="450px" height="450px" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="230" cy="230" r="120" stroke-width="20" stroke="none" fill="none"></circle>
+          <circle cx="230" cy="230" r="120" stroke-width="30" stroke="#031625" fill="none" class="circle-load-svg"></circle>
+      </svg>
+      <img id="wrongImg" src="../public/images/game/wrongImg.png" />
+    </hgroup>
+
+    <script src="/pages/lib/jquery.js"></script>
+    <script src="/pages/js/ajax.js"></script>
+    <script src="/pages/js/event.js"></script>
+    <script src="/pages/lib/socket.js"></script>
+
+    <script>
+
+      // record mode start	
+      function soundDetected(name) {
+        $(document).ready(function(){
+          document.getElementById('animalName').innerHTML=name;	
+        })
+      }
+
+      // Activating feature on SDK side
+      AjaxCallWithCallback('animalDetect/activate', function(){
+        console.log(`animalDetect activated`)
+      })
+
+      // Recursive function looping on itself
+      async function recurse(previouslyCalled = null, count = 0) {
+
+        console.log("Start")
+
+        // After all the animal were done
+        // display accomplishment message and go back to main menu
+        if(count == 5) {
+          $(document).ready(function(){
+            $("#circle-load").hide()
+            $("#recordCont").hide()
+            $("#error-circle-load").hide()
+            $("#wrongImg").hide()
+          })
+
+          AjaxCall("disable", "/")
+
+          soundDetected(` Good job ! Thank you for playing`)
+
+          setTimeout( () => {
+            window.location.href = "http://localhost"
+          }, 2000)
+        }
+
+        // Connect to SDK via the API
+        let socket = io('http://localhost:3000');
+
+        // This if statement is no executed on first run
+        // It hide the previously called animal
+        if(previouslyCalled) {
+          $("#"+previouslyCalled+"").hide()
+        }
+        // This initialize the record bubble
+        $("#circle-load").hide()
+        $("#recordCont").show()
+
+        // Call to the api for the next animal to detect
+        AjaxCallWithCallback("step/animalDetect", function (data) {
+
+          // Show on the UI which animal sound must be made
+          soundDetected(`What sound does a ${data.animal} make?`)
+
+          let event = new EventEmitter()
+          let timer = 0
+
+          event.once("finish", async () => {
+              // Wrong animal detect, show wrong image/loading circle
+            $(document).ready(function(){
+              $("#error-circle-load").show()
+              $("#wrongImg").show()
+              $("#recordCont").hide()
+              soundDetected(`I cannot recognize this animal 🤔`)
+            })
+
+            // Counting steps to exit when all animal will be done
+            count = count + 1
+            // Disconect from socket. It prevent from keeping the connection open 
+            // and receiving multiple event, which will display previously made call
+            socket.disconnect()
+            // After 2sec hide it
+            setTimeout( () => {
+              $(document).ready(function(){         
+                $("#wrongImg").hide()
+                $("#error-circle-load").hide()
+                $("#recordCont").show()
+                soundDetected(`What sound does a ${data.animal} make?`)
+              })
+              recurse(data.animal, count)
+            }, 2000)
+          })
+
+          let interval = setInterval((event) => {
+            timer++
+            console.log(`${data.animal} ${timer}`)
+            if(timer == 10) {
+              clearInterval(interval)
+              event.emit("finish")
+            }
+          }, 1000, event);
+
+          // Setup socket endpoint to wait for SDK response
+          // Called when animal sound is detected on SDK side
+          socket.on("animal", async (msg) => {
+            if(msg.animal != "others") {
+              clearInterval(interval)
+              // Counting steps to exit when all animal will be done
+              count = count + 1
+              // Disconect from socket. It prevent from keeping the connection open 
+              // and receiving multiple event, which will display previously made call
+              socket.disconnect()
+
+              // Hide the microphone picture
+              $(document).ready(function(){
+                $("#recordCont").hide()
+              })
+              // If animal detected match with expected animal
+              if(msg.animal == data.animal) {
+
+                // Show loading circle and animal pic
+                // Also important: we need to reload the DOM with ready function on each
+                // CSS change because somehow the scope gets lost, must be the recursive stuff causing this
+                $(document).ready(function(){
+                  $("#circle-load").show()
+                  $("#"+data.animal+"").show()
+                  soundDetected(`Good job ! ${data.animal} sound detected`)
+                })
+
+                // After the loading animation is made, loop on the function passing
+                // the detected animal so it can be hidden on next loop
+                setTimeout(
+                  recurse,
+                2000, data.animal, count)
+
+              } else {
+
+                // Wrong animal detect, show wrong image/loading circle
+                $(document).ready(function(){
+                  $("#error-circle-load").show()
+                  $("#recordCont").hide()
+                  $("#wrongImg").show()
+                  soundDetected(`I cannot recognize this animal 🤔`)
+                })
+
+                // After 2sec hide it
+                setTimeout(() => {
+                  $(document).ready(function(){         
+                    $("#wrongImg").hide()
+                    $("#error-circle-load").hide()
+                    $("#recordCont").show()
+                    soundDetected(`What sound does a ${data.animal} make?`)
+                  })
+                  recurse(data.animal, count)
+                }, 2000)
+              }
+            }
+          })
+        })
+      }
+
+      recurse()
+
+    </script>
+
+    </div>
+    
+</body>
+
+</html>

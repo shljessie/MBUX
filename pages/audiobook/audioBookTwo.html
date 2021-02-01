@@ -1,0 +1,48 @@
+<html id="audioBookTwo">
+<head>
+    <link href='../../public/styles/audiobook.css' rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
+    <script src="jquery-3.5.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <script src="/pages/lib/jquery.js"></script>
+  <script src="/pages/js/ajax.js"></script>
+  <input type="image" id="backButton" onclick='AjaxCall("disable", "/")' src="../../public/images/backButton.png"/>
+
+  <script>
+   $(document).ready(function(){
+    $(function() {
+        $('#book2').hover(function() {
+          $('#book1').css('opacity', 0.3);
+          $('#book3').css('opacity', 0.3);
+          $('#book4').css('opacity', 0.3);
+        }, function() {
+          $('#book1').css('opacity', 1);
+          $('#book3').css('opacity', 1);
+          $('#book4').css('opacity', 1);
+        });
+    });
+  });
+  </script>
+
+  <div id="bookCont">
+    <a href="">
+      <img id="book1" src="../../public/images/audiobook/book1.png"/>
+    </a>
+    <a href="./audioBookThree.html">
+     <img id="book2" src="../../public/images/audiobook/book2.png"/>
+    </a>
+    <a href="">
+      <img id="book3" src="../../public/images/audiobook/book3.png"/>
+    </a>
+    <a href="">
+    <img id="book4" src="../../public/images/audiobook/book4.png"/>
+    </a>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<html id="whistleMenuResponse">
+<head>
+    <link href='../../public/styles/alwaysOnMenu.css' rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
+</head>
+
+
+
+<body>
+    <script src="/pages/lib/socket.js"></script>
+    <script src="/pages/lib/jquery.js"></script>
+    <script src="/pages/js/ajax.js"></script>
+    <input type="image" id="backButton" onclick='AjaxCall("disable", "/")' src="../../public/images/backButton.png"/>
+
+    <script>
+        const socket = io('http://localhost:3000');
+
+        socket.on('action', function(msg) {
+            console.log(msg)
+            window.location.href = "http://localhost" + msg.page;
+        })
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<html id="sighResponse">
+<head>
+    <link href='../../../public/styles/sigh.css' rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
+</head>
+
+<body>
+    <script src="/pages/lib/jquery.js"></script>
+    <script src="/pages/js/ajax.js"></script>
+    <input type="image" id="RbackButton" onclick='AjaxCall("disable", "/")' src="../../../public/images/backButton.png"/>
+
+<div id="Vwrapper">
+  <video id= "video" width="auto" height="auto" autoplay muted loop>
+    <source src="../../../public/images/sigh/theweekend.mp4" type="video/mp4" autoplay muted loop>
+  </video>
+  <audio id="audio" autoplay loop>
+    <source src="../../../public/images/sigh/sigh_song.mp3" type="audio/mpeg" autoplay/>
+  </audio>
+  <div class="play"></div>
+  <div class="pause"></div>
+</div>
+
+<script>
+
+var x = document.getElementById("audio");
+$(".play").hide()
+   
+
+setTimeout( () => {
+   x.play();
+ },0)
+ 
+  $('#video').parent().click(function () {
+  if($(this).children("#video").get(0).paused){        
+      $(this).children("#video").get(0).play();  
+      $(this).children("#audio").get(0).play();  
+      $(this).children(".play").fadeOut();
+      $(this).children(".pause").fadeIn();
+    }else{       
+      $(this).children("#video").get(0).pause();
+      $(this).children("#audio").get(0).pause();  
+      $(this).children(".play").fadeIn();
+      $(this).children(".pause").fadeOut();
+    }
+});
+</script>
+
+</body>
+
+</html>

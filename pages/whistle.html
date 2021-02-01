@@ -1,0 +1,113 @@
+
+
+<html>
+<head>
+    <meta charset="UTF-8">  
+    <link href='../public/styles/whistle.css' rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <title>MBUX</title>
+
+</head>
+
+<body>
+  <script src="/pages/lib/jquery.js"></script>
+  <script src="/pages/js/ajax.js"></script>
+  
+  <div id="wrapper">
+    <input type="image" id="backButton" onclick='AjaxCall("disable", "/")' src="../../public/images/backButton.png"/>
+
+      <div id="dCont" >
+        <div class="box_wrap">
+          <div class="circle-ripple">
+          </div>
+          <div class="box_txt">
+            <div>
+              <img id="whistle" src="../public/images/whistle/whistle.png"/>
+            </div>
+          </div>
+        </div>
+          <p id="dtext"></p>
+      </div>
+
+      <div id="rCont">
+        <div class="box_wrap">
+          <div class="circle-ripple-count">
+          </div>
+          <div class="box_txt_count">
+            <p id="countDown"></p>
+          </div>
+        </div>
+          <p id="rtext"></p>
+      </div>
+
+      <script src="/pages/lib/socket.js"></script>
+      <script src="/pages/lib/jquery.js"></script>
+      <script src="/pages/js/ajax.js"></script>
+      <script>
+        AjaxCall("alwaysOn/activate", "", false)
+
+        const socket = io('http://localhost:3000');
+
+        socket.on('sound', function(msg) {
+
+          let duration = 1000
+          let baseReactionTime = 0
+
+          if(msg.duration) {
+            duration = msg.duration 
+          }
+
+          let elem = document.getElementById("dtext")
+          elem.innerHTML = msg.detected + " detected"
+
+
+          function applyCountdown (value, elem, message){
+            if(message) {
+              elem.innerHTML =  message.replace(/%s/,  ""+value+"")
+            }
+            document.getElementById("countDown").innerHTML = ""+value+"";
+          }
+
+          function countDown(i, elem, message) {
+            applyCountdown(i, elem, message)
+            int = setInterval(function() {
+              i-- 
+              applyCountdown(i, elem, message)
+              if(!i) {
+                clearInterval(int)
+              }
+            },1000);
+          }
+
+          function showWdiv(){
+            document.getElementById('dCont').style.display="flex";
+          }
+          setTimeout(showWdiv,baseReactionTime);
+
+          function hidediv(){
+              document.getElementById('dCont').style.display="none";
+          }
+          setTimeout(hidediv, (baseReactionTime+duration));
+
+          function showdiv2(){
+            document.getElementById('rCont').style.display="flex";
+            let elemF = document.getElementById("rtext")
+            countDown(duration/1000, elemF, msg.feedback)
+          }
+          setTimeout(showdiv2,(baseReactionTime+duration));
+
+	        function hidediv2(){
+              document.getElementById('rCont').style.display="none";
+          }
+          setTimeout(hidediv2,(baseReactionTime+(duration*2)));
+        });
+      socket.on('action_whistle', function(msg) {
+        window.location.href = msg.page;
+      }) 
+    </script>
+
+  </div>
+</body>
+
+</html>

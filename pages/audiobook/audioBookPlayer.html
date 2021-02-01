@@ -1,0 +1,62 @@
+<html id="audioBookPlayer">
+<head>
+    <link href='../../public/styles/audiobook.css' rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
+    <script src="jquery-3.5.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+ .
+ 
+<script type="text/javascript">
+   window.onload = playVideoTeaserFrom(10,40);   //this event will call the function after page was loaded
+
+   function playVideoTeaserFrom (startTime, endTime) {
+       var videoplayer = document.getElementById("video1");  //get your videoplayer
+
+       videoplayer.currentTime = starttime; //not sure if player seeks to seconds or milliseconds
+       videoplayer.play();
+
+       //call function to stop player after given interval
+       var stopVideoAfter = (endTime - startTime) * 1000;  //* 1000, because Timer is in ms
+       setTimeout(function(){
+           videoplayer.stop();
+       }, stopVideoAfter);
+
+   }
+ </script>
+
+<body>
+  <script src="/pages/lib/jquery.js"></script>
+  <script src="/pages/js/ajax.js"></script>
+  <script src="/pages/lib/socket.js"></script>
+
+  <input type="image" id="backButton" onclick='AjaxCall("disable", "/")' src="../../public/images/backButton.png"/>
+
+  <video id= "video1" width="auto" height="auto" autoplay>
+    <source src="../../public/images/audiobook/video.mp4" type="video/mp4">
+  </video>
+
+  <script>
+      $(document).ready(function(){
+      const socket = io('http://localhost:3000');
+
+      var video = document.getElementById("video1"); 
+
+      setTimeout( () => {
+         video.pause()   
+      }, 15000)
+
+      socket.on('animal', function(msg) {
+        if(msg.animal == "cat"){
+          video.play()
+        } else{
+          video.pause() 
+        }
+      });
+    })
+  </script>
+
+</body>
+
+</html>

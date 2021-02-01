@@ -1,0 +1,36 @@
+<html id="dogBarkResponse">
+<head>
+    <link href='../../../public/styles/cough.css' rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
+</head>
+
+<body>
+    <script src="/pages/lib/jquery.js"></script>
+    <script src="/pages/js/ajax.js"></script>
+    <input type="image" id="RbackButton" onclick='AjaxCall("disable", "/")' src="../../../public/images/backButton.png"/>
+
+
+  <video id= "video1" width="auto" height="auto" autoplay loop>
+    <source src="../../../public/images/Sneeze.mp4" type="video/mp4" autoplay loop/>
+  </video>
+  
+  <p id="text">Should I play a song from your favorite playlist?</p>
+
+  <audio id="audio" autoplay>
+    <source src="../../../public/images/sigh/sigh_comment.mp3" type="audio/mpeg" autoplay/>
+</audio>
+
+  <script>
+     setTimeout( () => {
+        $("#audio").play();
+        $('#video1').play();
+      },0)
+     setTimeout( () => {
+            window.location.href = "./sighCount.html";
+          }, 3900)
+  </script>
+
+</body>
+
+</html>

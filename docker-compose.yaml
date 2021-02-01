@@ -1,0 +1,13 @@
+version: "3.3"
+services:
+
+  mercedes_api:
+    build:
+      context: .
+    container_name: mercedes_api
+    ports:
+      - "80:5000"
+      - "3000:3000"
+    restart: always
+    environment:
+      IP: ${IP}

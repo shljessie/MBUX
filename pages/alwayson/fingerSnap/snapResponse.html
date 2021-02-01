@@ -1,0 +1,32 @@
+<html id="">
+<head>
+    <link href='../../../public/styles/snap.css' rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
+</head>
+
+<body>
+    <script src="/pages/lib/jquery.js"></script>
+    <script src="/pages/js/ajax.js"></script>
+    <input type="image" id="RbackButton" onclick='AjaxCall("disable", "/")' src="../../../public/images/backButton.png"/>
+
+
+  <video id= "video" width="auto" height="auto"  autoplay=""  muted="muted" autoplay loop>
+    <source src="../../../public/images/Sneeze.mp4" type="video/mp4" autoplay muted loop/>
+  </video>
+  <p id="text">“How can I help you?”</p>
+
+  <audio id="audio" autoplay>
+    <source src="../../../public/images/snap/fingersnap_comment.mp3" type="audio/mpeg" autoplay/>
+  </audio>
+
+  <script>  
+      var x = document.getElementById("audio");  
+      setTimeout( () => {
+        x.play();
+      },0)
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+
+
+<html id="laughBackground">
+  <head>
+      <meta charset="UTF-8">  
+      <link href='../../../public/styles/laugh.css' rel="stylesheet">
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+      <title>MBUX</title>
+  
+  </head>
+  
+  <body>
+    <script src="/pages/lib/jquery.js"></script>
+    <script src="/pages/js/ajax.js"></script>
+    
+    <div id="wrapper">
+      <input type="image" id="backButton" onclick='AjaxCall("disable", "/")' src="../../../public/images/backButton.png"/>
+  
+        <div id="dCont" >
+          <div class="box_wrap">
+            <div class="circle-ripple">
+            </div>
+            <div class="box_txt">
+              <div>
+                <img src="../../../public/images/laugh/laugh.png"/>
+              </div>
+            </div>
+          </div>
+            <p id="dtext"></p>
+        </div>
+  
+        <script src="/pages/lib/socket.js"></script>
+        <script src="/pages/lib/jquery.js"></script>
+        <script src="/pages/js/ajax.js"></script>
+        <script>
+  
+            function showWdiv(){
+              document.getElementById('dCont').style.display="flex";
+              document.getElementById("dtext").innerHTML= "Laughter detected";
+            }
+            setTimeout(showWdiv,1000);
+  
+            function hidediv(){
+                document.getElementById('dCont').style.display="none";
+            }
+            setTimeout(hidediv, 4000);
+
+            setTimeout( () => {
+            window.location.href = "./laughResponse.html";
+          }, 4100)
+        
+      </script>
+  
+    </div>
+  </body>
+  
+  </html>
+  

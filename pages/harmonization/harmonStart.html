@@ -1,0 +1,41 @@
+<html id="harmonStart">
+<head>
+    <link href='../../public/styles/harmon.css' rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
+</head>
+
+<body>
+  <script src="/pages/lib/jquery.js"></script>
+  <script src="/pages/js/ajax.js"></script>
+  <script src="/pages/lib/socket.js"></script>
+  
+  <div id= "center">
+    <input type="image" id="backButton" onclick='AjaxCall("disable", "/")' src="../../public/images/backButton.png"/>
+
+    <div id= "text"></div>  
+  </div>
+
+  <video id= "video" width="auto" height="auto" preload="auto" loop>
+    <source src="../../public/images/harmonization/harmonization.mp4" type="video/mp4">
+  </video>
+
+  <script>
+    $(document).ready(function(){
+
+
+    var video = document.getElementById("video"); 
+    video.pause()   
+    document.getElementById('text').innerHTML="Make a sound to start the Harmonizer mode with the driver in real-time.";	
+
+    setTimeout( () => {
+      video.play()
+      document.getElementById('text').innerHTML="Harmonizing . . .";
+    }, 2000)
+
+  })
+</script>
+
+</body>
+
+</html>

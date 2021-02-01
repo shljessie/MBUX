@@ -1,0 +1,31 @@
+<html id="">
+<head>
+    <link href='../../../public/styles/sneeze.css' rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
+</head>
+
+<body>
+    <script src="/pages/lib/jquery.js"></script>
+    <script src="/pages/js/ajax.js"></script>
+    <input type="image" id="RbackButton" onclick='AjaxCall("disable", "/")' src="../../../public/images/backButton.png"/>
+
+
+  <video id= "video" width="auto" height="auto"  autoplay=""  muted="muted" autoplay loop>
+    <source src="../../../public/images/Sneeze.mp4" type="video/mp4" autoplay loop/>
+  </video>
+  <audio id="audio" autoplay>
+    <source src="../../../public/images/sneeze/sneeze_comment.mp3" type="audio/mpeg" autoplay/>
+  </audio>
+  <p id="text">"Bless you! Should I turn down the air conditioner?"</p>
+
+  <script>
+    var x = document.getElementById("audio");
+    setTimeout( () => {
+        x.play();
+      },0)
+  </script>
+
+</body>
+
+</html>

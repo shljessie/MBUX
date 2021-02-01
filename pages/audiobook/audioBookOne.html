@@ -1,0 +1,94 @@
+<html id="audioBookOne">
+<head>
+    <link href='../../public/styles/audiobook.css' rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
+</head>
+
+ 
+<body>
+  <script src="/pages/lib/jquery.js"></script>
+  <script src="/pages/js/ajax.js"></script>
+  <script src="/pages/lib/socket.js"></script>
+
+  <input type="image" id="backButton" onclick='AjaxCall("disable", "/")' src="../../public/images/backButton.png"/>
+
+  <script>
+    $(document).ready(function(){
+      const socket = io('http://localhost:3000');
+
+      $("#recognizing").hide()
+      $("#countdown").hide()
+      $(".content_box").hide()
+      $("#wrongsound").hide()
+
+      socket.on('animal', function(msg) {
+        var seconds = document.getElementById("countdown").textContent;
+
+        var countdown = setInterval(function() {
+          seconds++;
+          document.getElementById("countdown").textContent = seconds + "%";
+          if (seconds == 100) clearInterval(countdown);
+        }, 40);
+
+        $("#recognizing").show()
+        $("#countdown").show()
+        $(".content_box").show()
+
+        if(msg.animal == "cat"){
+          setTimeout( () => {
+            window.location.href = "./audioBookTwo.html";
+          }, 6000)
+        } else{
+          $("#recognizing").hide()
+          $("#countdown").hide()
+          $(".content_box").hide()	
+          $("#wrongsound").show()
+        }
+    
+      });
+    })
+  </script>
+
+  <div id="recognizing">
+    Cat sound detected <br/><br/>
+    Searching for cat audiobooks
+    <br/>
+  </div>
+
+  <div id="wrongsound">
+    Cat sound is only supported at the moment.<br/>
+    Please make a cat sound to activate this mode.
+  </div>
+
+ <span id="countdown">0 </span>
+  <div class="content_box">
+    <div class="circle">
+      <div class="box">
+      </div>
+    </div>
+    <div class="background_box b1">
+      <div class="background c1">
+
+      </div>
+    </div>
+    <div class="background_box b2">
+        <div class="background c2">
+
+          </div>
+    </div>
+    <div class="background_box b3">
+        <div class="background c3">
+
+          </div>
+    </div>
+    <div class="background_box b4">
+        <div class="background c4">
+
+          </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+<html id="audioBookStart">
+<head>
+    <link href='../../public/styles/audiobook.css' rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
+</head>
+
+<body>
+  <script src="/pages/lib/jquery.js"></script>
+  <script src="/pages/js/ajax.js"></script>
+  <input type="image" id="backButton" onclick='AjaxCall("disable", "/")' src="../../public/images/backButton.png"/>
+  <input type="image" id="startArrowTwo" onclick='AjaxCall("animalBook/activate", "http://localhost/pages/audiobook/audioBookOne.html")'  src="../../public/images/audiobook/startArrow.png"/>
+</body>
+
+</html>

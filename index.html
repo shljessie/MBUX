@@ -1,0 +1,28 @@
+<html>
+<head>
+    <meta charset="UTF-8">  
+    <link href='../public/styles/main.css' rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <title>MBUX</title>
+
+</head>
+
+<body>
+  <script src="/pages/lib/jquery.js"></script>
+  <script src="/pages/js/ajax.js"></script>
+    <div class="backgroundImage"></div>
+    <div class="buttonCont">
+        <input type="image" id="one" onclick='AjaxCall("alwaysOn/activate", "http://localhost/pages/menus/alwaysOnMenu.html")' src='/public/images/AlwaysOnButton.png'/>
+        <a href="/pages/menus/audioMenu.html">
+            <input type="image" id="two" src='/public/images/AnimalAudiobook.png'/>
+        </a>
+        <input type="image" id="three" onclick='AjaxCall("animalDetect/activate", "http://localhost/pages/menus/gameMenu.html")' src='/public/images/AnimalGame.png'/>
+        <input type="image" id="four"  onclick='AjaxCall("harmonizer/activate", "http://localhost/pages/menus/harmonMenu.html")' src='/public/images/Harmonization.png'/>
+        <input type="image" id="five"  onclick='AjaxCall("secret/activate", "http://localhost/pages/secretLang/secretAmbient.html")' src='/public/images/SecretLanguage.png'/>
+    </div>
+
+</body>
+
+</html>
+
